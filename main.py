@@ -54,3 +54,16 @@ lr = LinearRegression()
 # Train the model
 lr.fit(x_train, y_train)
 
+# Test model: Score returns the coefficient of determination R2 of the prediction
+# The best possible score is 1.0
+
+lr_confidence = lr.score(x_test, y_test)
+
+
+# Set x_forecast equal to the last 30 rows of the original data set from the adjusted close column
+x_forecast = np.array(df.drop(['Prediction'], 1))[-forecast_out:]
+print(x_forecast)
+
+# Print predictions for the next 'n' days
+lr_prediction = lr.predict(x_forecast)
+print(lr_prediction)
