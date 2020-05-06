@@ -48,4 +48,9 @@ svr_rbf.fit(x_train, y_train)
 # The best possible score is 1.0
 
 svm_confidence = svr_rbf.score(x_test, y_test)
-print('svm confidence:', svm_confidence)
+
+# Create and train the linear regression model
+lr = LinearRegression()
+# Train the model
+lr.fit(x_train, y_train)
+
