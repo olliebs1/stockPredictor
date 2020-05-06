@@ -15,8 +15,26 @@ df = quandl.get("WIKI/FB", api_key=apiKey)
 df = df[['Adj. Close']]
 
 # A variable for predicting 'n' days into the future
-forecast_out = 1
+forecast_out = 30
 
 # Create another column (the target or dependent variable) shifted 'n' units up
-df['Prediction'] = df[['Adj. Close']].shift(-1)
-print(df.head())
+df['Prediction'] = df[['Adj. Close']].shift(-forecast_out)
+# print(df.tail())
+
+# Create the independant data set (x)
+# Convert the dataframe to a numpy array
+X = np.array(df.drop(['Prediction'], 1))
+
+# Remove the last 'n' rows
+X = X[:-forecast_out]
+
+# Create the dependant data set (y)
+# Convert the dataframe to a numpy array (all values including the NaN's)
+y = np.array(df['Prediction'])
+
+# Get all of the y values except the last 'n' rows
+y = y[:-forecast_out]
+
+# Split the data into 80% training and 20% testing
+
+train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
