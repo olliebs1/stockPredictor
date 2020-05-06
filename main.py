@@ -37,4 +37,8 @@ y = y[:-forecast_out]
 
 # Split the data into 80% training and 20% testing
 
-train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Create and train the support vector machine (Regressor)
+svr_rbf = SVR(kernel='rbf', C=1e3, gamma=0.1)
+svr_rbf.fit(x_train, y_train)
