@@ -64,6 +64,11 @@ lr_confidence = lr.score(x_test, y_test)
 x_forecast = np.array(df.drop(['Prediction'], 1))[-forecast_out:]
 print(x_forecast)
 
-# Print predictions for the next 'n' days
+# Print linear reagression model predictions for the next 'n' days
 lr_prediction = lr.predict(x_forecast)
 print(lr_prediction)
+
+
+# Print support vector regressor model predictions for the next 'n' days
+svm_prediction = svr_rbf.predict(x_forecast)
+print(svm_prediction)
